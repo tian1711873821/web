@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style>
+		#box{
+			width: 100px;
+			height: 100px;
+			background-color: darkcyan;
+			margin-top: 200px;
+			position: absolute;
+			
+		}
+	</style>
+	<body>
+		<div id="box">
+			
+		</div>
+	</body>
+	<script>
+		function $(id){
+			return document.getElementById(id);
+		}
+		var num=0
+		setInterval(function(){
+			num+=1;
+			
+			if(num>=300){
+				setInterval(function(){
+				num-=1;
+				$("box").style.left=num+"px"
+				$("box").style.top=num+"px"
+				if(num<=0){
+					num=0;
+				}
+				},5)
+				
+			}
+			$("box").style.top=num+"px"
+			$("box").style.left=num+"px"
+		},5)
+	</script>
+</html>

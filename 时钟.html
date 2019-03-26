@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style>
+		*{
+		margin: 0px;
+		padding: 0px;
+		}
+		#time{
+			width: 600px;
+			height: 600px;
+			margin: 0px auto;
+			background: url(img/clock.jpg) no-repeat;
+			position: relative;
+		}
+		#time div{
+			width: 600px;
+			height: 600px;
+			position: absolute;
+			left: 0px;
+			top: 0px;
+		}
+		#hour{
+			background: url(img/hour.png) no-repeat center center;
+		}
+		#minute{
+			background: url(img/minute.png) no-repeat center center;
+		}
+		#second{
+			background: url(img/second.png) no-repeat center center;
+		}
+	</style>
+	<body>
+		<div id="time">
+			<div id="hour">
+				
+			</div>
+			<div id="minute">
+				
+			</div>
+			<div id="second">
+				
+			</div>
+		</div>
+	</body>
+	<script>
+		function $(id){
+			return document.getElementById(id);
+		}
+		function fn(){
+		var h=$("hour");
+		var m=$("minute");
+		var s=$("second");
+		var currentTime=new Date();
+		var ms=currentTime.getMilliseconds();
+		var second=currentTime.getSeconds()+ms/1000;
+		var minute=currentTime.getMinutes()+second/60;
+		var hour=currentTime.getHours()+minute/60;
+		
+		s.style.transform="rotate("+second*6+"deg)";
+		m.style.transform="rotate("+minute*6+"deg)"
+		h.style.transform="rotate("+hour*30+"deg)"
+		s.style._o_transform="rotate("+second*6+"deg)";
+		m.style._o_transform="rotate("+minute*6+"deg)"
+		h.style._o_transform="rotate("+hour*30+"deg)"
+		}
+		
+		setInterval(fn,1000)
+	</script>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+			margin: 0px;
+			padding: 0px;
+			}
+			#box{
+			width: 100px;
+			height: 100px;
+			background-color: darkmagenta;
+			margin-top: 200px;
+			position: absolute;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div id="box"></div>
+	</body>
+	<script>
+		function $(id){
+			return document.getElementById(id);
+		}
+		var num=0;
+		var leader=0;
+		var target=500;
+		
+		setInterval(function(){
+			leader=leader+(target-leader)/10;
+			$("box").style.left=leader+"px"
+		},30)
+		
+	</script>
+</html>

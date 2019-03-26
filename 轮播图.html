@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0px;
+				padding: 0px;
+			}
+			.box{
+				width: 490px;
+				height: 170px;
+				border: black 1px solid;
+				overflow: hidden;
+				position: relative;
+			}
+			.box img{
+				display: block;
+			}
+			.box ul{
+				list-style: none;
+				width: 500%;
+				position: absolute;
+			}
+			.box ul li{
+				float: left;
+			}
+			.box ol{
+				list-style: none;
+				position: absolute;
+				top: 140px;
+				left: 50%;
+				margin-left: -70px;
+			}
+			.box ol li{
+				float: left;
+					background-color: white;
+					width: 22px;
+					height: 22px;
+					margin-left: 6px;
+					text-align: center;	
+					cursor: pointer;
+			}
+			.box ol li.current{
+				background-color: orange;
+			}
+			#arrows span{
+				width: 20px;
+				height: 20px;
+				color: white;
+				background: rgba(0,0,0,.5);
+				font-size: 20px;
+				font-weight: 700;
+				text-align: center;
+				line-height: 20px;
+				display: block;
+				cursor: pointer;
+			}
+			#box #arrows{
+				width: 100%;
+				height: 20px;
+				position: absolute;
+				left: 0;
+				top: 50%;
+				margin-top: -10px;
+				display: none;
+			}
+			#arrows #left{
+				float: left;
+				border-top-right-radius:7px ;
+				border-bottom-right-radius:7px ;
+			}
+			#arrows #right{
+				float: right;
+				border-top-left-radius:7px ;
+				border-bottom-left-radius:7px ;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box" class="box">
+			<ul>
+				<li><img src="img/L1.jpg" /></li>
+				<li><img src="img/L2.jpg" /></li>
+				<li><img src="img/L3.jpg" /></li>
+				<li><img src="img/L4.jpg" /></li>
+				<li><img src="img/L5.jpg" /></li>
+			</ul>
+			<ol id="ol">
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+			</ol>
+			<div id="arrows">
+				<span id="left"><</span>
+				<span id="right">></span>
+			</div>
+		</div>
+	</body>
+	<script>
+		
+		var box=document.getElementById("box");
+		var ul=box.children[0];
+		var olLis=box.children[1].children;
+		var arrows=document.getElementById("arrows");
+		var left=document.getElementById("left");
+		var right=document.getElementById("right");
+		var leader=0;
+		var target=0;
+		for(var i=0;i<olLis.length;i++){
+			olLis[i].index=i;
+			olLis[i].onmouseover=function(){
+				target=this.index*490;
+				for (var i=0;i<olLis.length;i++) {
+					olLis[i].className="";
+				}
+					this.className="current";			
+			}
+		}
+		setInterval(function(){
+				leader=leader+(target-leader)/10;
+				ul.style.left=-leader+"px"	
+				},20)
+		var chilknum=0;
+		left.onclick=function(){
+			chilknum--;
+			if(chilknum<=0){
+				chilknum=0;
+			}
+			target=chilknum*490;
+			clickIndicator(chilknum);
+		}
+		right.onclick=function(){
+			chilknum++;
+			if(chilknum>=4){
+				chilknum=4;
+			}
+			target=chilknum*490;
+			clickIndicator(chilknum);
+		}
+		 box.onmouseover=function(){
+		 	arrows.style.display="block";
+		 }
+		 box.onmouseout=function(){
+		 	arrows.style.display="none";
+		 }
+		function clickIndicator(chilknum){
+					//排它思想
+					for(var i=0;i<olLis.length;i++){
+						olLis[i].className="";
+					}
+					olLis[chilknum].className="current";
+				}
+	</script>
+</html>

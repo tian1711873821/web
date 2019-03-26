@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style>
+		img{
+			width: 100px;
+			left: 0px;
+			top: 0px;
+			position: absolute;
+		}
+	</style>
+	<body>
+		<img src="img/img.jpg" />
+	</body>
+	<script>
+		var img=document.getElementsByTagName("img")[0];
+		var targetx=0;
+		var targety=0;
+		document.onclick=function(event){
+			event=event || window.event;
+			targetx=event.clientX-img.width/2;
+			targety=event.clientY-img.height/2;
+		}
+		var leaderx=0;
+		var leadery=0;
+		setInterval(function(){
+			leaderx=leaderx+(targetx-leaderx)/10;
+			leadery=leadery+(targety-leadery)/10;
+			img.style.left=leaderx+"px";
+			img.style.top=leadery+"px";
+		},10)
+	</script>
+</html>

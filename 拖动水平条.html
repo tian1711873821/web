@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style>
+		*{
+			margin: 0px;
+			padding: 0px;
+		}
+		#box{
+			width: 400px;
+			height: 10px;
+			background-color: gray;
+			margin: 100px auto;
+			position: relative;
+		}
+		#bar{
+			width: 10px;
+			height: 20px;
+			background-color: red;
+			position: absolute;
+			top:-5px ;
+			left: 0px;
+			cursor: pointer;
+		}
+		#mask{
+			background-color: red;
+			height: 10px;
+			position: absolute;
+			left: 0px;
+			top: 0px;
+		}
+		p{
+			text-align: center;
+			margin-top: 50px;
+		}
+	</style>
+	
+	<body>
+		<div id="box">
+			<div id="bar">
+				
+			</div>
+			<div id="mask">
+				
+			</div>
+		</div>
+		<p id="p">走了:</p>
+	</body>
+	<script>
+		var bar=document.getElementById("bar");
+		var box=document.getElementById("box");
+		var mask=document.getElementById("mask");
+		var p=document.getElementById("p");
+		var leftValue=0;
+		bar.onmousedown=function(event){
+			event=event||window.event;
+			leftValue=box.offsetLeft;
+			document.onmousemove=function(event){
+				var val=event.clientX-leftValue;
+				if(val<=0){
+					val=0;
+				}else if(val>=box.offsetWidth){
+					val=box.offsetWidth;
+				}
+			
+				bar.style.left=val+"px";
+				mask.style.width=val+"px";
+				var pp=val/box.offsetWidth*100;
+				pp=pp.toFixed(2);
+				p.innerHTML=pp+"%";
+			}
+			document.onmouseup=function(){
+				document.onmousemove=null;
+			}
+		}
+		
+		
+	</script>
+</html>
