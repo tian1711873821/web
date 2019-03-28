@@ -44,17 +44,19 @@
 				<button class="current">按钮1</button><button>按钮2</button><button>按钮3</button><button>按钮4</button><button>按钮5</button>
 			</div>
 			<div class="bottom">
-				<div style="display: block;">盒子1</div>
+				<div style="display: block;"></div>
 				<div>盒子2</div>
 				<div>盒子3</div>
 				<div>盒子4</div>
 				<div>盒子5</div>
 			</div>
 		</div>
+		<a href="匀速运动.html">匀速运动</a>
 	</body>
 	<script>
 		var btns=document.getElementsByTagName("button");
 		var divs=document.getElementsByClassName("bottom")[0].getElementsByTagName("div");
+		var btn=document.getElementById("btn");
 		
 		for (var i=0;i<btns.length;i++) {
 			btns[i].index=i;
